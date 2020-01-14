@@ -25,7 +25,7 @@ public class LoginController implements WebMvcConfigurer
     @Override
     public void addViewControllers(ViewControllerRegistry registry)
     {
-        registry.addViewController("/welcome").setViewName("welcome");
+        registry.addViewController("/home").setViewName("home");
     }
 
     @GetMapping("/login")
@@ -42,7 +42,7 @@ public class LoginController implements WebMvcConfigurer
 
         User existingUser=usersRepository.findById(user.getUsername()).get();
         if (user.getPassword().equals(existingUser.getPassword()))
-            return "redirect:/welcome";
+            return "redirect:/home/"+user.getUsername();
         return "login";
     }
 
