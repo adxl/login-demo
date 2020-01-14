@@ -37,9 +37,13 @@ public class LoginController implements WebMvcConfigurer
     @PostMapping("/login")
     public String checkCredentials(@Valid User user, BindingResult bindingResult)
     {
-        if (bindingResult.hasErrors())
+        if (bindingResult.hasErrors() || !usersRepository.findById(user.getUsername()).isPresent())
             return "login";
-        return "";
+
+        User existingUser=usersRepository.findById(user.getUsername()).get();
+        if (user.getPassword().equals(existingUser.getPassword()))
+            return "redirect:/welcome";
+        return "login";
     }
 
 

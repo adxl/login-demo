@@ -36,8 +36,10 @@ public class SignupController implements WebMvcConfigurer
     @PostMapping("signup")
     public String checkUserInfos(@Valid User user, BindingResult bindingResult)
     {
-        if (bindingResult.hasErrors())
-            return "signup";
+        if (usersRepository.findById(user.getUsername()).isPresent() || bindingResult.hasErrors())
+           return "signup";
+        usersRepository.save(user);
+        //System.out.println(user);
         return "redirect:/login";
     }
 }
