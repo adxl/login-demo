@@ -1,0 +1,58 @@
+.mainContainer
+{
+	text-align:center;
+}
+
+.tableContainer
+{
+	text-align:center;
+}
+
+.tableContainer table
+{
+	display:inline-block;
+}
+
+/* style.css | http://127.0.0.1:8080/style.css */
+
+button
+{
+	background-color:tomato;
+	color:           white;
+	width:           100%;
+	padding:         5px;
+	border-radius:   15px;
+	border-style:    solid;
+	font-size:       medium;
+}
+
+.topContainer
+{
+	/*background-color: #0cacac;*/
+	color:   #343A40;
+	overflow:hidden;
+}
+
+p
+{
+	font-size:smaller;
+	color:    #343A40;
+}
+
+a
+{
+	text-decoration:underline;
+	color:          #343A40;
+}
+
+.helloContainer
+{
+	text-align:center;
+	color:     #343A40;
+}
+
+.helloContainer p
+{
+	font-size:larger;
+}
+

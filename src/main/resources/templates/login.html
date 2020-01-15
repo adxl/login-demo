@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div>
+<div class="mainContainer">
+    <div class="topContainer">
+        <h1>Login</h1>
+    </div>
+    <hr>
+    <br>
     <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-        <table>
-            <tr>
-                <td>Username</td>
-                <td><input type="text" th:field="*{username}"></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" th:field="*{password}"></td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit">Submit</button>
-                </td>
-            </tr>
-
-        </table>
+        <div class="tableContainer">
+            <table>
+                <tr>
+                    <td><input type="text" th:field="*{username}" autocomplete="off" placeholder="Username"></td>
+                </tr>
+                <tr>
+                    <td><input type="password" th:field="*{password}" autocomplete="off" placeholder="Password"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <br><button type="submit">Login</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>New member? <a href="/signup">Sign up.</a></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </form>
 </div>
 </body>

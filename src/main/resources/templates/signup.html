@@ -3,39 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div>
+<div class="mainContainer">
+    <div class="topContainer">
+        <h1>Create an account</h1>
+    </div>
+    <hr>
+    <br>
     <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
-        <table>
-            <tr>
-                <td>First name</td>
-                <td><input type="text" th:field="*{firstName}"></td>
-            </tr>
-            <tr>
-                <td>Last name</td>
-                <td><input type="text" th:field="*{lastName}"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="email" th:field="*{email}"></td>
-            </tr>
-            <tr>
-                <td>Username</td>
-                <td><input type="text" th:field="*{username}"></td>
-                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" th:field="*{password}"></td>
-                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit">Sign Up</button>
-                </td>
-            </tr>
-        </table>
+        <div class="tableContainer">
+            <table>
+                <tr>
+                    <td><input type="text" th:field="*{firstName}" autocomplete="off" placeholder="First name"></td>
+                </tr>
+                <tr>
+                    <td><br><input type="text" th:field="*{username}" autocomplete="off"
+                               placeholder="Username"></td>
+                    <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                </tr>
+                <tr>
+                    <td><input type="password" th:field="*{password}" autocomplete="off"
+                               placeholder="Password"></td>
+                    <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <br><button type="submit">Sign Up</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Already have an account? <a href="/login">Login here.</a></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </form>
 </div>
 </body>
