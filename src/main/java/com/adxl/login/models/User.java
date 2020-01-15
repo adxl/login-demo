@@ -20,11 +20,14 @@ public class User
 
     private String firstName;
 
+    private String code;
+
     public User(String username, String password, String firstName)
     {
         this.username=username;
         this.password=password;
         this.firstName=firstName;
+        this.code=String.valueOf((int) (Math.random()*900000+100000));
     }
 
     public String getUsername()
@@ -57,12 +60,18 @@ public class User
         this.firstName=firstName;
     }
 
+    public String getCode()
+    {
+        return code;
+    }
+
     @Override
     public String toString()
     {
         return "User{"+
                 "username='"+username+'\''+
                 ", firstName='"+firstName+'\''+
+                ", code='"+code+'\''+
                 '}';
     }
 }

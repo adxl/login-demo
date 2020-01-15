@@ -40,6 +40,7 @@ public class LoginController implements WebMvcConfigurer
     {
 
 
+
         if (bindingResult.hasErrors() || !usersRepository.findById(user.getUsername()).isPresent())
         {
             modelMap.addAttribute("error", "Wrong username or password");
@@ -48,11 +49,10 @@ public class LoginController implements WebMvcConfigurer
 
 
         User existingUser=usersRepository.findById(user.getUsername()).get();
-        System.out.println(user.getPassword()+"---"+existingUser.getPassword());
         if (user.getPassword().equals(existingUser.getPassword()))
         {
             modelMap.remove("error");
-            return "redirect:/home/"+user.getUsername();
+            return "redirect:/home/"+existingUser.getCode();
         }
 
         modelMap.addAttribute("error", "Wrong username or password");

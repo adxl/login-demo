@@ -12,6 +12,6 @@ public interface UsersRepository extends MongoRepository<User,String>
     @Override
     Optional<User> findById(String s);
 
-
+    Optional<User> findByCode(String s);
 
 }

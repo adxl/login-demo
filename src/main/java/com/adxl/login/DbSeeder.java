@@ -1,4 +1,4 @@
-package com.adxl.login.controllers;
+package com.adxl.login;
 
 import com.adxl.login.models.User;
 import com.adxl.login.repositories.UsersRepository;
@@ -20,11 +20,10 @@ public class DbSeeder implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        List<User> users = usersRepository.findAll();
-        for (User user : users)
-        {
-            System.out.println(user.getUsername()+"-"+user.getPassword());
+        //usersRepository.deleteAll();
+        List<User> users=usersRepository.findAll();
 
-        }
+        for (User user : users)
+            System.out.println(user);
     }
 }

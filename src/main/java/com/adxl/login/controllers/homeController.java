@@ -19,13 +19,12 @@ public class homeController
         this.usersRepository=usersRepository;
     }
 
-    @GetMapping("/home/{id}")
-    public String showHome(ModelMap modelMap, @PathVariable String id)
+    @GetMapping("/home/{code}")
+    public String showHome(ModelMap modelMap, @PathVariable String code)
     {
-        Optional user = usersRepository.findById(id);
+        Optional user = usersRepository.findByCode(code);
         if (!user.isPresent())
             return "redirect:/login";
-        System.out.println(((User)user.get()).getFirstName());
         modelMap.addAttribute("user",((User)user.get()).getFirstName());
         return "home";
     }
