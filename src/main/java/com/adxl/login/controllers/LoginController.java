@@ -4,6 +4,7 @@ import com.adxl.login.models.User;
 import com.adxl.login.repositories.UsersRepository;
 import org.omg.CosNaming.BindingIterator;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,14 +36,26 @@ public class LoginController implements WebMvcConfigurer
     }
 
     @PostMapping("/login")
-    public String checkCredentials(@Valid User user, BindingResult bindingResult)
+    public String checkCredentials(@Valid User user, BindingResult bindingResult, ModelMap modelMap)
     {
+
+
         if (bindingResult.hasErrors() || !usersRepository.findById(user.getUsername()).isPresent())
+        {
+            modelMap.addAttribute("error", "Wrong username or password");
             return "login";
+        }
+
 
         User existingUser=usersRepository.findById(user.getUsername()).get();
+        System.out.println(user.getPassword()+"---"+existingUser.getPassword());
         if (user.getPassword().equals(existingUser.getPassword()))
+        {
+            modelMap.remove("error");
             return "redirect:/home/"+user.getUsername();
+        }
+
+        modelMap.addAttribute("error", "Wrong username or password");
         return "login";
     }
 

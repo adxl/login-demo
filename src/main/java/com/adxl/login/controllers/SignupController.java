@@ -3,6 +3,7 @@ package com.adxl.login.controllers;
 import com.adxl.login.models.User;
 import com.adxl.login.repositories.UsersRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,12 +35,15 @@ public class SignupController implements WebMvcConfigurer
     }
 
     @PostMapping("signup")
-    public String checkUserInfos(@Valid User user, BindingResult bindingResult)
+    public String checkUserInfos(@Valid User user, BindingResult bindingResult, ModelMap modelMap)
     {
         if (usersRepository.findById(user.getUsername()).isPresent() || bindingResult.hasErrors())
-           return "signup";
+        {
+            modelMap.addAttribute("error", "This username is not available");
+            return "signup";
+        }
         usersRepository.save(user);
-        //System.out.println(user);
+        modelMap.remove("error");
         return "redirect:/login";
     }
 }

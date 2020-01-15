@@ -4,15 +4,18 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Document(collection="users")
 public class User
 {
     @Id
     @NotNull
+    @Size(min=4)
     private String username;
 
     @NotNull
+    @Size(min=6)
     private String password;
 
     private String firstName;
@@ -57,6 +60,9 @@ public class User
     @Override
     public String toString()
     {
-        return username+"-"+firstName;
+        return "User{"+
+                "username='"+username+'\''+
+                ", firstName='"+firstName+'\''+
+                '}';
     }
 }

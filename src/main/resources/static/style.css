@@ -13,8 +13,6 @@
 	display:inline-block;
 }
 
-/* style.css | http://127.0.0.1:8080/style.css */
-
 button
 {
 	background-color:tomato;
@@ -54,5 +52,10 @@ a
 .helloContainer p
 {
 	font-size:larger;
+}
+
+#errorMessage
+{
+	color:tomato;
 }
 
