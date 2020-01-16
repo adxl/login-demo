@@ -34,13 +34,17 @@ public class SignupController implements WebMvcConfigurer
         return "signup";
     }
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public String checkUserInfos(@Valid User user, BindingResult bindingResult, ModelMap modelMap)
     {
         if (usersRepository.findById(user.getUsername()).isPresent() || bindingResult.hasErrors())
         {
             modelMap.addAttribute("error", "This username is not available");
             return "signup";
+        }
+        while (usersRepository.findByCode(user.getCode()).isPresent())
+        {
+            user.refreshCode();
         }
         usersRepository.save(user);
         modelMap.remove("error");

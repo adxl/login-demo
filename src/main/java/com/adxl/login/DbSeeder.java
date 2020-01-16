@@ -20,10 +20,14 @@ public class DbSeeder implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
+
         //usersRepository.deleteAll();
         List<User> users=usersRepository.findAll();
 
         for (User user : users)
             System.out.println(user);
+        String s = "hello";
+        System.out.println(s.substring(0,1).toUpperCase().concat(s.substring(1)));
     }
+
 }

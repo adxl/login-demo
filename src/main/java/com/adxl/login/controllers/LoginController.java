@@ -2,7 +2,6 @@ package com.adxl.login.controllers;
 
 import com.adxl.login.models.User;
 import com.adxl.login.repositories.UsersRepository;
-import org.omg.CosNaming.BindingIterator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -39,14 +38,11 @@ public class LoginController implements WebMvcConfigurer
     public String checkCredentials(@Valid User user, BindingResult bindingResult, ModelMap modelMap)
     {
 
-
-
         if (bindingResult.hasErrors() || !usersRepository.findById(user.getUsername()).isPresent())
         {
             modelMap.addAttribute("error", "Wrong username or password");
             return "login";
         }
-
 
         User existingUser=usersRepository.findById(user.getUsername()).get();
         if (user.getPassword().equals(existingUser.getPassword()))

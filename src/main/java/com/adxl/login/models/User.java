@@ -52,7 +52,7 @@ public class User
 
     public String getFirstName()
     {
-        return firstName;
+        return firstName.substring(0,1).toUpperCase().concat(firstName.substring(1));
     }
 
     public void setFirstName(String firstName)
@@ -65,12 +65,17 @@ public class User
         return code;
     }
 
+    public void refreshCode()
+    {
+        code=String.valueOf((int) (Math.random()*900000+100000));
+    }
+
     @Override
     public String toString()
     {
         return "User{"+
                 "username='"+username+'\''+
-                ", firstName='"+firstName+'\''+
+                ", firstName='"+getFirstName()+'\''+
                 ", code='"+code+'\''+
                 '}';
     }
